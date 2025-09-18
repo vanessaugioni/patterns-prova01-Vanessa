@@ -9,10 +9,12 @@ class Lanche{
 
   showIngredientes() {
     console.log(`
-      PEDIDO FEITO:
-      ${this.pao}, ${this.carne}, ${this.queijo},
-      Salada: ${this.salada} 
-      Molho: ${this.molho ? "Sim" : "Não"}`
+      -- PEDIDO FEITO:
+      Pão:${this.pao}, 
+      Carne:${this.carne}, 
+      Tipo de queijo:${this.queijo},
+      Salada:${this.salada} 
+      Adicionar molho:${this.molho ? "Sim" : "Não"}`
     );
   }
 }
