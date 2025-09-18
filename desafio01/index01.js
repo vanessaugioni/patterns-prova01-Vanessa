@@ -9,8 +9,8 @@ class Lanche{
 
   showIngredientes() {
     console.log(
-      `${this.pao} ${this.carne} ${this.queijo},
-      Salada: ${this.salada}, 
+      `Principais: ${this.pao}, ${this.carne}, ${this.queijo},
+      Salada: ${this.salada} 
       Molho: ${this.molho ? "Sim" : "Não"}`
     );
   }
