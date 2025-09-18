@@ -69,8 +69,8 @@ function main(factory) {
   console.log(window.generate());
 }
 
-console.log("Type DARK");
+console.log("-- Type DARK:");
 main(new DarkFactory());
 
-console.log("Type LIGHT");
+console.log("-- Type LIGHT:");
 main(new LightFactory());
