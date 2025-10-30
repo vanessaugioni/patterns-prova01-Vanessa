@@ -5,29 +5,39 @@ class LegacyPaymentSystem {
 }
 
 class ModernPaymentAPI {
-  makeTransaction(amountInCents) {
+  process(amountInCents) {
     console.log(`Pagamento de R$${amountInCents / 100} via API moderna.`);
   }
 }
 
-class PaymentAdapter {
+class ModernPaymentAdapter {
   constructor(modernAPI) {
     this.modernAPI = modernAPI;
   }
 
   makePayment(amount) {
     const amountInCents = amount * 100;
-    this.modernAPI.makeTransaction(amountInCents);
+    this.modernAPI.process(amountInCents);
   }
 }
 
-function payOrder(processor, amount) {
-  processor.makePayment(amount);
+class PaymentProcessor {
+  constructor(system) {
+    this.system = system;
+  }
+
+  pay(amount) {
+    this.system.makePayment(amount);
+  }
 }
 
-const legacyProcessor = new LegacyPaymentSystem();
-payOrder(legacyProcessor, 100);
+
+const legacy = new LegacyPaymentSystem();
+const legacyProcessor = new PaymentProcessor(legacy);
+legacyProcessor.pay(100);
+
 
 const modernAPI = new ModernPaymentAPI();
-const adaptedProcessor = new PaymentAdapter(modernAPI);
-payOrder(adaptedProcessor, 200);
+const adaptedModern = new ModernPaymentAdapter(modernAPI);
+const modernProcessor = new PaymentProcessor(adaptedModern);
+modernProcessor.pay(200);
