@@ -38,7 +38,7 @@ class RemoteControl {
 
 class AdvancedRemoteControl extends RemoteControl {
   mute() {
-    console.log("Dispositivo no modo mudo.");
+    console.log("Dispositivo no modo mudo!!!");
   }
 }
 

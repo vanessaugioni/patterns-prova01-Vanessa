@@ -11,7 +11,7 @@ class ModernPaymentAPI {
 
 class ModernPaymentAdapter extends LegacyPaymentSystem {
   constructor(modernAPI) {
-    super(); // importante para herdar corretamente
+    super();
     this.modernAPI = modernAPI;
   }
 
@@ -25,7 +25,6 @@ class PaymentProcessor {
   constructor(system) {
     this.system = system;
   }
-
   pay(amount) {
     this.system.makePayment(amount);
   }
@@ -35,6 +34,8 @@ class PaymentProcessor {
 const legacy = new LegacyPaymentSystem();
 const legacyProcessor = new PaymentProcessor(legacy);
 legacyProcessor.pay(100);
+
+//------------------
 
 const modernAPI = new ModernPaymentAPI();
 const adaptedModern = new ModernPaymentAdapter(modernAPI);
