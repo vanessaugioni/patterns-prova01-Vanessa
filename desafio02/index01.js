@@ -28,11 +28,11 @@ function typePay(legacy, modern) {
 
 
 const payType = new LegacyPaymentSystem();
-notifyUser(payType, "teste"); 
+notifyUser(payType, 100); 
 
 
 const payService = new ModernPaymentAPI();
 const payMod = new Paydapter(payService);
 
 
-notifyUser(payMod, "teste saída"); 
+notifyUser(payMod, 200); 
