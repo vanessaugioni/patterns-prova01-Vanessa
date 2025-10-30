@@ -1,42 +1,33 @@
-// Sistema interno espera isso:
-class PaymentProcessor {
-  processPayment(amount) {
-    console.log(`Pagamento de R$${amount} processado.`);
+class LegacyPaymentSystem {
+  makePayment(amount) {
+    console.log(`Pagando R$${amount} com sistema legado.`);
   }
 }
 
-// Serviço externo de pagamento (incompatível)
-class ExternalPaymentService {
-  makeTransaction(value) {
-    console.log(
-      `Transação realizada no valor de R$${value} com serviço externo.`
-    );
+class ModernPaymentAPI {
+  makeTransaction(amountInCents) {
+    console.log(`Pagamento de R$${amountInCents / 100} via API moderna.`);
   }
 }
 
-// Adapter que "traduz" ExternalPaymentService para o formato esperado
-class ExternalPaymentAdapter extends PaymentProcessor {
-  constructor(externalService) {
-    super();
-    this.externalService = externalService;
+class PaymentAdapter {
+  constructor(modernAPI) {
+    this.modernAPI = modernAPI;
   }
 
-  processPayment(amount) {
-    // Adaptando o método
-    this.externalService.makeTransaction(amount);
+  makePayment(amount) {
+    const amountInCents = amount * 100;
+    this.modernAPI.makeTransaction(amountInCents);
   }
 }
 
-// Cliente
 function payOrder(processor, amount) {
-  processor.processPayment(amount);
+  processor.makePayment(amount);
 }
 
-// Testando com o sistema interno
-const processor = new PaymentProcessor();
-payOrder(processor, 100);
+const legacyProcessor = new LegacyPaymentSystem();
+payOrder(legacyProcessor, 100);
 
-// Testando com o serviço externo adaptado
-const externalService = new ExternalPaymentService();
-const adaptedService = new ExternalPaymentAdapter(externalService);
-payOrder(adaptedService, 200);
+const modernAPI = new ModernPaymentAPI();
+const adaptedProcessor = new PaymentAdapter(modernAPI);
+payOrder(adaptedProcessor, 200);
