@@ -1,10 +1,10 @@
 class Device {
   turnOn() {
-    throw new Error("Método 'turnOn()' deve ser implementado.");
+    throw new Error("Método 'On()' deve ser implementado.");
   }
 
   turnOff() {
-    throw new Error("Método 'turnOff()' deve ser implementado.");
+    throw new Error("Método 'Off()' deve ser implementado.");
   }
 }
 class TV extends Device {
@@ -16,12 +16,12 @@ class TV extends Device {
   }
 }
 
-class Radio extends Device {
+class Alexa extends Device {
   turnOn() {
-    console.log("Rádio ligado.");
+    console.log("Alexa ligada.");
   }
   turnOff() {
-    console.log("Rádio desligado.");
+    console.log("Alexa desligada.");
   }
 }
 
@@ -44,13 +44,13 @@ class AdvancedRemoteControl extends RemoteControl {
 
 
 const tv = new TV();
-const radio = new Radio();
+const alexa = new Alexa();
 
 const tvRemote = new RemoteControl(tv);
 tvRemote.pressPowerButton(true);
 tvRemote.pressPowerButton(false);
 
-const radioRemote = new AdvancedRemoteControl(radio);
-radioRemote.pressPowerButton(true);
-radioRemote.mute();
-radioRemote.pressPowerButton(false);
+const alexaRemote = new AdvancedRemoteControl(alexa);
+alexaRemote.pressPowerButton(true);
+alexaRemote.mute();
+alexaRemote.pressPowerButton(false);
