@@ -1,12 +1,12 @@
 class Device {
   turnOn() {
-    throw new Error("Método 'On()' deve ser implementado.");
+    throw new Error("Método 'turnOn()' deve ser implementado.");
   }
-
   turnOff() {
-    throw new Error("Método 'Off()' deve ser implementado.");
+    throw new Error("Método 'turnOff()' deve ser implementado.");
   }
 }
+
 class TV extends Device {
   turnOn() {
     console.log("TV ligada.");
@@ -41,7 +41,6 @@ class AdvancedRemoteControl extends RemoteControl {
     console.log("Dispositivo no modo mudo!!!");
   }
 }
-
 
 const tv = new TV();
 const alexa = new Alexa();
