@@ -10,7 +10,7 @@ class ModernPaymentAPI {
   }
 }
 
-class ModernPaymentAdapter {
+class ModernPaymentAdapter extends LegacyPaymentSystem {
   constructor(modernAPI) {
     this.modernAPI = modernAPI;
   }
