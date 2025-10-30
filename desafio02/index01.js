@@ -3,7 +3,6 @@ class LegacyPaymentSystem {
     console.log(`Pagando R$${amount} com sistema legado.`);
   }
 }
-
 class ModernPaymentAPI {
   process(amountInCents) {
     console.log(`Pagamento de R$${amountInCents / 100} via API moderna.`);
@@ -12,6 +11,7 @@ class ModernPaymentAPI {
 
 class ModernPaymentAdapter extends LegacyPaymentSystem {
   constructor(modernAPI) {
+    super(); // importante para herdar corretamente
     this.modernAPI = modernAPI;
   }
 
@@ -35,7 +35,6 @@ class PaymentProcessor {
 const legacy = new LegacyPaymentSystem();
 const legacyProcessor = new PaymentProcessor(legacy);
 legacyProcessor.pay(100);
-
 
 const modernAPI = new ModernPaymentAPI();
 const adaptedModern = new ModernPaymentAdapter(modernAPI);
