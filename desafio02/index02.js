@@ -47,9 +47,11 @@ const alexa = new Alexa();
 
 const tvRemote = new RemoteControl(tv);
 tvRemote.pressPowerButton(true);
+
 tvRemote.pressPowerButton(false);
 
 const alexaRemote = new AdvancedRemoteControl(alexa);
 alexaRemote.pressPowerButton(true);
 alexaRemote.mute();
+
 alexaRemote.pressPowerButton(false);
