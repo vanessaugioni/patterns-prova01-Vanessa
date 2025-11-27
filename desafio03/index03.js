@@ -45,11 +45,11 @@ class OrderController {
 
 class UI {
   showMessage(msg) {
-    console.log("📢", msg);
+    console.log("MSG", msg);
   }
 
   showTotal(total) {
-    console.log("💰 Total do pedido:", total.toFixed(2));
+    console.log("Total do pedido:", total.toFixed(2));
   }
 }
 

@@ -8,8 +8,8 @@ class SensorReader {
 
 class TemperatureValidator {
   validate(temp) {
-    if (temp < -5) throw new Error("Temperatura muito baixa! ⚠️");
-    if (temp > 45) throw new Error("Temperatura muito alta! 🔥");
+    if (temp < -5) throw new Error("Temperatura muito baixa!");
+    if (temp > 45) throw new Error("Temperatura muito alta!");
     return true;
   }
 }
@@ -21,7 +21,7 @@ class TemperatureDisplay {
   }
 
   showError(error) {
-    console.error("❌ Erro:", error.message);
+    console.error("Erro:", error.message);
   }
 }
 

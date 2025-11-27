@@ -10,23 +10,21 @@ class Audio {
   capture(audioName) {}
 }
 
-
-// === IMPLEMENTAÇÕES BÁSICAS ===
 class BasicPhoto extends Photo {
   take(photoName) {
-    console.log("📸 Capturando foto:", photoName);
+    console.log("Cpturando foto:", photoName);
   }
 }
 
 class BasicVideo extends Video {
   record(videoName) {
-    console.log("🎥 Gravando vídeo:", videoName);
+    console.log("Gravando vídeo:", videoName);
   }
 }
 
 class BasicAudio extends Audio {
   capture(audioName) {
-    console.log("🎙 Gravando áudio:", audioName);
+    console.log("Gravando áudio:", audioName);
   }
 }
 
