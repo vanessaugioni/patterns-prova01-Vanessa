@@ -1,61 +1,44 @@
-// SRP 
-
-class Calculator {
-  
-    add(a, b) {
-    return a + b;
-  }
-
-  subtract(a, b) {
-    return a - b;
-  }
-
-  multiply(a, b) {
-    return a * b;
-  }
-
-  divide(a, b) {
-    if (b === 0) throw new Error("Divisão por zero não é permitida.");
-    return a / b;
+class SensorReader {
+  read() {
+    const temp = Math.floor(Math.random() * 60) - 10; 
+    return temp;
   }
 }
 
-class Display {
-  showResult(result) {
-    console.log("Resultado:", result);
+
+class TemperatureValidator {
+  validate(temp) {
+    if (temp < -5) throw new Error("Temperatura muito baixa! ⚠️");
+    if (temp > 45) throw new Error("Temperatura muito alta! 🔥");
+    return true;
+  }
+}
+
+
+class TemperatureDisplay {
+  showTemperature(temp) {
+    console.log(`🌡 Temperatura atual: ${temp}°C`);
   }
 
   showError(error) {
-    console.error("Erro:", error.message);
+    console.error("❌ Erro:", error.message);
   }
 }
 
-class CalculatorApp {
-  constructor(calculator, display) {
-    this.calculator = calculator;
+
+class TemperatureApp {
+  constructor(reader, validator, display) {
+    this.reader = reader;
+    this.validator = validator;
     this.display = display;
   }
 
-  execute(operation, a, b) {
+  run() {
     try {
-      let result;
-      switch (operation) {
-        case "add":
-          result = this.calculator.add(a, b);
-          break;
-        case "subtract":
-          result = this.calculator.subtract(a, b);
-          break;
-        case "multiply":
-          result = this.calculator.multiply(a, b);
-          break;
-        case "divide":
-          result = this.calculator.divide(a, b);
-          break;
-        default:
-          throw new Error("Operação inválida");
-      }
-      this.display.showResult(result);
+      const temp = this.reader.read();
+      this.validator.validate(temp);
+      this.display.showTemperature(temp);
+
     } catch (error) {
       this.display.showError(error);
     }
@@ -63,9 +46,10 @@ class CalculatorApp {
 }
 
 
-const calc = new Calculator();
-const display = new Display();
-const app = new CalculatorApp(calc, display);
+const reader = new SensorReader();
+const validator = new TemperatureValidator();
+const display = new TemperatureDisplay();
 
-app.execute("add", 10, 5);       
-app.execute("divide", 8, 0);     
+const app = new TemperatureApp(reader, validator, display);
+
+app.run();   

@@ -1,61 +1,62 @@
-
-class Call {
-  print(num) {}
+class Photo {
+  take(photoName) {}
 }
 
 class Video {
-  scan(num) {}
+  record(videoName) {}
 }
 
-class Faax {
-  faxes(num) {}
+class Audio {
+  capture(audioName) {}
 }
 
-class BasicCall extends Call {
-  print(num) {
-    console.log("🖨️ Ligando:", num);
+
+// === IMPLEMENTAÇÕES BÁSICAS ===
+class BasicPhoto extends Photo {
+  take(photoName) {
+    console.log("📸 Capturando foto:", photoName);
   }
 }
 
 class BasicVideo extends Video {
-  scan(num) {
-    console.log("📄 Chamando:", num);
+  record(videoName) {
+    console.log("🎥 Gravando vídeo:", videoName);
   }
 }
 
-class BasicFax extends Faax {
-  faxes(num) {
-    console.log("📠 Enviando fax:", num);
+class BasicAudio extends Audio {
+  capture(audioName) {
+    console.log("🎙 Gravando áudio:", audioName);
+  }
+}
+
+class MultiMediaStation {
+  constructor(photoService, videoService, audioService) {
+    this.photo = photoService;
+    this.video = videoService;
+    this.audio = audioService;
+  }
+
+  take(photoName) {
+    this.photo.take(photoName);
+  }
+
+  record(videoName) {
+    this.video.record(videoName);
+  }
+
+  capture(audioName) {
+    this.audio.capture(audioName);
   }
 }
 
 
-class MultiFunctionCall {
-  constructor(call, video, fax) {
-    this.call = call;
-    this.video = video;
-    this.fax = fax;
-  }
-
-  print(num) {
-    this.call.print(num);
-  }
-
-  scan(num) {
-    this.video.scan(num);
-  }
-
-  faxes(num) {
-    this.fax.faxes(num);
-  }
-}
-
-
-const call = new BasicCall();
+const photo = new BasicPhoto();
 const video = new BasicVideo();
-const fax = new BasicFax();
+const audio = new BasicAudio();
 
-const multi = new MultiFunctionCall(call, video, fax);
-multi.print("Contrato.pdf");
-multi.scan("Relatório.pdf");
-multi.faxes("Assinatura.png");
+const station = new MultiMediaStation(photo, video, audio);
+
+station.take("evento-aniversario.jpg");
+station.record("entrevista-oficial.mp4");
+station.capture("podcast-episodio1.wav");
